@@ -4,8 +4,8 @@ import { registerUser } from "../../services/config/RESTService";
 
 export function UserRegistrationForm() {
     const initialFormData = {
-        nome: "",
-        cognome: "",
+        firstname: "",
+        lastname: "",
         email: "",
         password: "",
     };
@@ -21,7 +21,7 @@ export function UserRegistrationForm() {
         const nomeRegex = /^[a-zA-Z\s']{5,50}$/;
         const emailRegex = /^[A-Za-z0-9\.+_\-]+@[A-Za-z0-9\._\-]+\.[A-Za-z]{2,24}$/;
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,20}$/;
-        if (formData.nome.match(nomeRegex) && formData.cognome.match(nomeRegex) && formData.email.match(emailRegex) && formData.password.match(passwordRegex)) {
+        if (formData.firstname.match(nomeRegex) && formData.lastname.match(nomeRegex) && formData.email.match(emailRegex) && formData.password.match(passwordRegex)) {
             const response = await registerUser(formData);
             if (response == 200) {
                 setStatus("success");
@@ -36,8 +36,8 @@ export function UserRegistrationForm() {
     return (
         <form style={{ width: "20rem" }} id="registration-form" className="mx-auto mt-3" onSubmit={handleSubmit}>
             <h1 className="h3 mb-3 font-weight-normal">Registrazione Utente</h1>
-            <input type="text" name="nome" className="form-control" id="firstName" placeholder="Nome" value={formData.nome} onChange={handleChange} />
-            <input type="text" name="cognome" className="form-control" id="lastName" placeholder="Cognome" value={formData.cognome} onChange={handleChange} />
+            <input type="text" name="firstname" className="form-control" id="firstName" placeholder="Nome" value={formData.nome} onChange={handleChange} />
+            <input type="text" name="lastname" className="form-control" id="lastName" placeholder="Cognome" value={formData.cognome} onChange={handleChange} />
             <input type="email" name="email" className="form-control" id="userEmail" placeholder="Email" value={formData.email} onChange={handleChange} />
             <input type="password" name="password" className="form-control" id="userPassword" placeholder="Password" value={formData.password} onChange={handleChange} />
             <div className="d-flex justify-content-between align-items-center mt-2">
